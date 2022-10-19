@@ -1,7 +1,7 @@
 import createModal from './createModal'
 
-export default function addModalToBody(array, callback) {
+export default function addModalToBody(modalTitle, bodyForm, callback) {
     const body = document.querySelector('body')
 
-    body.append(createModal(...array, callback))
+    body.append(createModal(modalTitle, bodyForm, callback))
 }

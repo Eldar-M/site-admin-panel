@@ -1,9 +1,11 @@
 import addModalToBody from "./addModalToBody"
 import openModal from "./openModal"
+import createProductModalBodyForm from "./createProductModalBodyForm"
 
 export default function addProductModalToBody(callback) {
-    
-    addModalToBody(['New product', 'Number', 'Product Name', 'Specification', 'Price'], callback)
+    const form = createProductModalBodyForm()
+
+    addModalToBody('New Product', form, callback)
 
     openModal()
 }

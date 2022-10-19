@@ -1,14 +1,14 @@
-import getNewTableValues from "./getNewTableValues"
+import getNewProductFromForm from "./getNewProductFromForm"
 import Product from "./Product"
 
 export default function createNewProduct() {
-    const productValue = getNewTableValues()
+    const productValue = getNewProductFromForm()
 
     const newProduct = new Product({
-        number: productValue.firstInputValue,
-        productName: productValue.secondInputValue,
-        specification: productValue.thirdInputValue,
-        price: productValue.fourthInputValue
+        number: productValue.numberProductInputValue,
+        productName: productValue.productNameInputValue,
+        specification: productValue.specificationInputValue,
+        price: productValue.priceInputValue
     })
 
     return newProduct
