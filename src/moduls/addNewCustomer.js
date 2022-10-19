@@ -1,10 +1,10 @@
 import closeModal from "./closeModal";
 import sendingCustomerToTheServer from "./sendingCustomerToTheServer";
 
-export default function addNewCustomer(callback) {
+export default function addNewCustomer(onNewCustomerCreate) {
     sendingCustomerToTheServer()
         .then(customer => {
-            callback(customer)
+            onNewCustomerCreate(customer)
 
             closeModal()
     })
