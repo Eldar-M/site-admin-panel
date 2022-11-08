@@ -1,38 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './style/style.css'
 
-import createCustomersTable from './moduls/createCustomersTable'
-import createProductsTable from './moduls/createProductsTable'
-import onCustomersLoaded from './moduls/onCustomersLoaded'
-import onProductLoaded from './moduls/onProductsLoaded'
-import addCustomerModalToBody from './moduls/addCustomerModalToBody'
-import addProductModalToBody from './moduls/addProductModalToBody'
-import addNewCustomer from './moduls/addNewCustomer'
-import addNewProduct from './moduls/addNewProduct'
+import onCustomersCardClick from './controllers/customers/onCustomersCardClick'
+import onProductsCardClick from './controllers/products/onProductsCardClick'
+import onOrdersCardClick from './controllers/orders/onOrdersCardClick'
 
 const customersButton = document.querySelector('.customers')
 const productsButton = document.querySelector('.products')
+const ordersButton = document.querySelector('.orders')
 
-customersButton.addEventListener('click', function() {
-    onCustomersLoaded()
+customersButton.addEventListener('click', onCustomersCardClick)
 
-    const customersCard = document.querySelector('.card')
+productsButton.addEventListener('click', onProductsCardClick)
 
-    customersCard.replaceWith(createCustomersTable((onNewCustomerCreate) => {
-        addCustomerModalToBody(() => {
-            addNewCustomer(onNewCustomerCreate)
-        })
-    }))
-})
-
-productsButton.addEventListener('click', function() {
-    onProductLoaded()
-
-    const productsCard = document.querySelector('.card')
-
-    productsCard.replaceWith(createProductsTable((onNewProductCreate) => {
-        addProductModalToBody(() => {
-            addNewProduct(onNewProductCreate)
-        })
-    }))
-})
+ordersButton.addEventListener('click', onOrdersCardClick)
