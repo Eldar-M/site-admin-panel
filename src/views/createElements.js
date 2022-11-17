@@ -105,6 +105,23 @@ function createActionElement(callback, element, onDelete) {
     action.append(editButton, deleteButton)
   
     return action
-  }
+};
 
-export {createDiv, createActionElement, createHeader, createForm, createTextInputElement, createButtonElement, createA, createTableElement, createTbody, createThead, createElement, createTh, createTd, createTr}; 
+function createOptionElement(value, label){
+    const optionElement = document.createElement('option')
+    optionElement.setAttribute('value', value)
+    optionElement.innerText = label
+
+    return optionElement
+}
+
+function createSelectElement(className){
+    const selectElement = document.createElement('select')
+
+    selectElement.className = className
+    selectElement.setAttribute('aria-label', 'Default select example')
+
+    return selectElement
+}
+
+export {createDiv, createActionElement, createSelectElement, createOptionElement, createHeader, createForm, createTextInputElement, createButtonElement, createA, createTableElement, createTbody, createThead, createElement, createTh, createTd, createTr}; 

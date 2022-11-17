@@ -3,22 +3,19 @@ import { createActionElement } from '../createElements.js'
 export default function createOrderConfig(callback) {
   const orderConfig = {
     headerName: 'Order',
-    columnName: ['#', 'Customer', 'Product', 'Amount', 'Total', 'Action'],
+    columnName: ['Customer', 'Product', 'Amount', 'Total ($)', 'Action'],
     rowCellCreators: [
-      function createNumberCell(order) {
-        return order.number
-      },
       function createCustomerCell(order) {
-        return order.customer
+        return order.customer.firstName + ' ' + order.customer.lastName + ' ' + '(' + order.customer.company + ')'
       },
       function createProductCell(order) {
-        return order.product
+        return order.product.productName + ' ' + order.product.specification
       },
       function createAmountCell(order) {
         return order.amount
       },
       function createTotalCell(order) {
-        return order.total
+        return order.product.price * order.amount
       },
       function createActionCell(order, onDelete) {
         

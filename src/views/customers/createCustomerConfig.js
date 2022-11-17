@@ -4,11 +4,8 @@ export default function createCustomerConfig(callback) {
   const customerConfig = {
     url: 'http://localhost:3000/customers',
     headerName: 'Customer',
-    columnName: ['#', 'First Name', 'Last Name', 'Company', 'Action'],
+    columnName: ['First Name', 'Last Name', 'Company', 'Action'],
     rowCellCreators: [
-      function createNumberCell(customer) {
-        return customer.number
-      },
       function createFirstNameCell(customer) {
         return customer.firstName
       },

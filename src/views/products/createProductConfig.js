@@ -4,11 +4,8 @@ export default function createProductConfig(callback) {
   const productConfig = {
     url: 'http://localhost:3000/products',
     headerName: 'Product',
-    columnName: ['#', 'Product Name', 'Specification', 'Price', 'Action'],
+    columnName: ['Product Name', 'Specification', 'Price ($)', 'Action'],
     rowCellCreators: [
-      function createNumberCell(product) {
-        return product.number
-      },
       function createProductNameCell(product) {
         return product.productName
       },

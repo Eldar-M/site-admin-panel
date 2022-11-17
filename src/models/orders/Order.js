@@ -1,5 +1,4 @@
-export default function Order({number, customer, product, amount, total}) {
-    this.number = number;
+export default function Order({customer, product, amount, total}) {
     this.customer = customer;
     this.product = product;
     this.amount = amount;

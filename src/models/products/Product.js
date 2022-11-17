@@ -1,5 +1,4 @@
-export default function Product({number, productName, specification, price}) {
-    this.number = number;
+export default function Product({productName, specification, price}) {
     this.productName = productName;
     this.specification = specification;
     this.price = price;
