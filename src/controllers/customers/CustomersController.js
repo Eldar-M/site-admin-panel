@@ -2,6 +2,7 @@ import deleteCustomerFromServer from "../../models/customers/deleteCustomerFromS
 import addNewCustomer from "../../views/customers/addNewCustomer"
 import addCustomerModalToBody from "../../views/customers/addCustomerModalToBody"
 import CustomersView from '../../views/customers/CustomersView'
+import CustomerFormController from "./CustomerFormController"
 
 export default class CustomersController{
   constructor(items){
@@ -12,6 +13,7 @@ export default class CustomersController{
     this.onCustomerAdd = this.onCustomerAdd.bind(this)
 
     this.customersView = new CustomersView(items, this.onCustomerDeleteClick, this.onCustomerAddClick)
+    this.customerFormController = new CustomerFormController()
   }
 
   elementReplace(element){
@@ -27,11 +29,14 @@ export default class CustomersController{
   }
 
   onCustomerAddClick(){
-    addCustomerModalToBody(this.onCustomerSaveClick)
+    addCustomerModalToBody(this.customerFormController.getForm(), this.onCustomerSaveClick)
+    this.customerFormController.clearForm()
   }
 
   onCustomerSaveClick(){
-    addNewCustomer(this.onCustomerAdd)
+    if(this.customerFormController.getNewCustomer()){
+      addNewCustomer(this.customerFormController.getNewCustomer(), this.onCustomerAdd)
+    }
   }
 
   onCustomerAdd(customer){

@@ -2,6 +2,7 @@ import deleteProductFromServer from "../../models/products/deleteProductFromServ
 import addNewProduct from "../../views/products/addNewProduct"
 import addProductModalToBody from "../../views/products/addProductModalToBody"
 import ProductsView from "../../views/products/ProductsView"
+import ProductFormController from "./ProductFormController"
 
 
 export default class ProductsController{
@@ -13,6 +14,7 @@ export default class ProductsController{
     this.onProductAdd = this.onProductAdd.bind(this)
 
     this.productsView = new ProductsView(items, this.onProductDeleteClick, this.onProductAddClick)
+    this.productFormController = new ProductFormController()
   }
 
   elementReplace(element){
@@ -28,11 +30,14 @@ export default class ProductsController{
   }
 
   onProductAddClick(){
-    addProductModalToBody(this.onProductSaveClick)
+    addProductModalToBody(this.productFormController.getForm(), this.onProductSaveClick)
+    this.productFormController.clearForm()
   }
 
   onProductSaveClick(){
-    addNewProduct(this.onProductAdd)
+    if(this.productFormController.getNewProduct()){
+      addNewProduct(this.productFormController.getNewProduct(), this.onProductAdd)
+    }
   }
 
   onProductAdd(product){

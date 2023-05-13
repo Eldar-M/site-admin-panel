@@ -3,8 +3,7 @@ import addNewOrder from "../../views/orders/addNewOrder"
 import addOrderModalToBody from "../../views/orders/addOrderModalToBody"
 import OrdersView from "../../views/orders/OrdersView"
 
-import fetchCustomers from "../../models/customers/fetchCustomers"
-import fetchProducts from "../../models/products/fetchProducts"
+import OrderFormController from "./OrdersFormController"
 
 export default class OrdersController{
   constructor(items){
@@ -14,26 +13,8 @@ export default class OrdersController{
     this.onOrderSaveClick = this.onOrderSaveClick.bind(this)
     this.onOrderAdd = this.onOrderAdd.bind(this)
 
-    this.getCustomers()
-    this.getProducts()
-
-    this.customers = []
-    this.products = []
     this.ordersView = new OrdersView(items, this.onOrderDeleteClick, this.onOrderAddClick)
-  }
-
-  getCustomers(){
-    fetchCustomers()
-      .then(data => {
-        this.customers = data
-      })
-  }
-
-  getProducts(){
-    fetchProducts()
-      .then(data => {
-        this.products = data
-      })
+    this.orderFormController = new OrderFormController()
   }
 
   elementReplace(element){
@@ -49,11 +30,14 @@ export default class OrdersController{
   }
 
   onOrderAddClick(){
-    addOrderModalToBody(this.customers, this.products, this.onOrderSaveClick)
+    addOrderModalToBody(this.orderFormController.getForm(), this.onOrderSaveClick)
+    this.orderFormController.clearForm()
   }
 
   onOrderSaveClick(){
-    addNewOrder(this.onOrderAdd)
+    if(this.orderFormController.getNewOrder()){
+      addNewOrder(this.orderFormController.getNewOrder(), this.onOrderAdd)
+    }
   }
 
   onOrderAdd(order){

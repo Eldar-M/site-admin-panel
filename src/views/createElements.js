@@ -12,6 +12,15 @@ function createHeader(header, innerText) {
     return headingElement;
 };
 
+function createSubmitElement(className, innerText) {
+    const buttonElement = document.createElement('input');
+    buttonElement.type = 'submit';
+    buttonElement.className = className;
+    buttonElement.value = innerText;
+
+    return buttonElement;
+};
+
 function createButtonElement(type, className, innerText) {
     const buttonElement = document.createElement('button');
     buttonElement.type = type;
@@ -90,8 +99,9 @@ function createTextInputElement(placeholder, className) {
     return inputElement;
 };
 
-function createForm() {
+function createForm(className) {
     const formElement = document.createElement('form');
+    formElement.className = className
     return formElement;
 };
 
@@ -124,4 +134,4 @@ function createSelectElement(className){
     return selectElement
 }
 
-export {createDiv, createActionElement, createSelectElement, createOptionElement, createHeader, createForm, createTextInputElement, createButtonElement, createA, createTableElement, createTbody, createThead, createElement, createTh, createTd, createTr}; 
+export {createDiv, createActionElement, createSubmitElement, createSelectElement, createOptionElement, createHeader, createForm, createTextInputElement, createButtonElement, createA, createTableElement, createTbody, createThead, createElement, createTh, createTd, createTr}; 
